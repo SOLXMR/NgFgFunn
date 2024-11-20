@@ -1,0 +1,793 @@
+:root {
+    --primary-color: #6c54d8;
+    --secondary-color: #ff6b6b;
+    --background: #0a0a0a;
+    --text-color: #ffffff;
+    --accent: #00ff9d;
+    --max-width: 1200px;
+    --navbar-height: 80px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--background);
+    color: var(--text-color);
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* Container utilities */
+.section-container {
+    width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Loader */
+.loader {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.nf-symbol {
+    font-size: 4rem;
+    color: #00ff9d;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.loading-bar {
+    width: 200px;
+    height: 4px;
+    background: #222;
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+}
+
+.loading-bar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    background: #00ff9d;
+    animation: loading 1s infinite ease-in-out;
+}
+
+@keyframes loading {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+/* Hero Section */
+.hero {
+    min-height: 40vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    padding: calc(var(--navbar-height) + 10px) 20px 0;
+    z-index: 2;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    width: 100%;
+    max-width: var(--max-width);
+    padding-bottom: 250px;
+    position: relative;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+/* Floating Elements */
+.floating-elements {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 1rem 0;
+    font-size: 2rem;
+}
+
+/* Buttons */
+.connect-wallet,
+.primary-btn,
+.secondary-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.connect-wallet,
+.primary-btn {
+    background: var(--primary-color);
+    color: white;
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--text-color);
+}
+
+.connect-wallet:hover,
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 84, 216, 0.3);
+}
+
+.secondary-btn:hover {
+    background: rgba(108, 84, 216, 0.1);
+}
+
+.hero-cta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+/* iPhone Emulator */
+.iphone-emulator {
+    padding: 4rem 1rem;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.iphone-container {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: scale(0.9);
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.iphone-frame {
+    position: relative;
+    width: 375px;
+    max-width: 90vw;
+    height: 812px;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    overflow: hidden;
+    border: 12px solid #1a1a1a;
+}
+
+.iphone-screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    border-radius: 28px;
+}
+
+/* Ensure app grid is fully visible */
+.app-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    padding: 15px;
+    height: calc(100% - 200px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Sections */
+section {
+    padding: 2rem 0;
+}
+
+section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+/* Footer */
+footer {
+    background: rgba(10, 10, 10, 0.9);
+    padding: 3rem 0;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+    position: relative;
+    z-index: 11;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 12;
+}
+
+.social-links a {
+    display: inline-block;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-links a:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+}
+
+.social-links i {
+    pointer-events: none;
+}
+
+/* Background Canvas */
+#background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+    .hero {
+        margin-bottom: 300px;
+    }
+    .hero-content {
+        padding-bottom: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        margin-bottom: 400px;
+    }
+    .hero-content {
+        padding-bottom: 350px;
+    }
+    .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+@media (max-height: 800px) {
+    .hero-content {
+        padding-bottom: 400px;
+    }
+}
+
+.connect-wallet {
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.9rem;
+    min-width: 200px;
+}
+
+.connect-wallet:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(108, 84, 216, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+    .iphone-container {
+        transform: scale(0.8);
+    }
+    
+    .iphone-frame {
+        border-width: 8px;
+    }
+}
+
+@media screen and (max-height: 900px) {
+    .iphone-container {
+        transform: scale(0.7);
+    }
+}
+
+/* Mobile Optimization */
+@media screen and (max-width: 768px) {
+    /* Navigation adjustments */
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .nav-links {
+        display: none; /* Hide navigation links on mobile */
+    }
+
+    /* Hero section adjustments */
+    .hero-content h1 {
+        font-size: 2rem;
+        padding: 0 1rem;
+    }
+
+    /* iPhone emulator mobile optimization */
+    .iphone-emulator {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+
+    .iphone-container {
+        transform: scale(0.7);
+        transform-origin: top center;
+        margin: -50px 0;
+    }
+
+    .iphone-frame {
+        border-width: 8px;
+        max-width: none;
+    }
+
+    /* Section spacing */
+    .section-container {
+        padding: 1rem;
+    }
+}
+
+/* Additional breakpoint for smaller phones */
+@media screen and (max-width: 380px) {
+    .iphone-container {
+        transform: scale(0.6);
+        margin: -80px 0;
+    }
+}
+
+/* Landscape mode optimization */
+@media screen and (max-width: 900px) and (orientation: landscape) {
+    .iphone-container {
+        transform: scale(0.5);
+        margin: -120px 0;
+    }
+    
+    .hero {
+        min-height: auto;
+        padding: 2rem 0;
+    }
+}
+
+/* Button Styles */
+.hero-cta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 2rem;
+    z-index: 2;
+    position: relative;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 12px 30px;
+    border-radius: 25px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    pointer-events: auto;
+}
+
+.primary-btn {
+    background: #00ff9d;
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.3);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #00ff9d;
+    border: 2px solid #00ff9d;
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.1);
+}
+
+/* Hover states */
+.primary-btn:hover, .secondary-btn:hover {
+    transform: scale(1.05);
+}
+
+.primary-btn:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 157, 0.5);
+}
+
+.secondary-btn:hover {
+    box-shadow: 0 0 30px rgba(0, 255, 157, 0.3);
+}
+
+/* Roadmap Styles - with more specific selectors */
+section.roadmap {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 6rem 0;
+    position: relative;
+    width: 100%;
+    z-index: 2;
+}
+
+section.roadmap .section-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+section.roadmap h2 {
+    text-align: center;
+    color: #00ff9d;
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    text-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+}
+
+.roadmap-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+.roadmap-item {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(0, 255, 157, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.roadmap-item:hover {
+    transform: translateY(-10px);
+    border-color: #00ff9d;
+    box-shadow: 0 10px 30px rgba(0, 255, 157, 0.2);
+}
+
+.roadmap-content h3 {
+    color: #00ff9d;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.roadmap-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem 0;
+}
+
+.roadmap-content li {
+    color: white;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.1rem;
+}
+
+.roadmap-content li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #00ff9d;
+}
+
+.completion-status {
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Status colors */
+.roadmap-item[data-phase="1"] .completion-status {
+    background: rgba(0, 255, 157, 0.2);
+    color: #00ff9d;
+}
+
+.roadmap-item[data-phase="2"] .completion-status {
+    background: rgba(255, 166, 0, 0.2);
+    color: orange;
+}
+
+.roadmap-item[data-phase="3"] .completion-status,
+.roadmap-item[data-phase="4"] .completion-status {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    section.roadmap h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .roadmap-container {
+        grid-template-columns: 1fr;
+    }
+
+    .roadmap-item {
+        padding: 1.5rem;
+    }
+
+    .roadmap-content h3 {
+        font-size: 1.5rem;
+    }
+}
+
+/* Hacker Console Styles */
+.hacker-console {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.console-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #00ff9d;
+    border-radius: 10px;
+    box-shadow: 
+        0 0 20px rgba(0, 255, 157, 0.2),
+        0 0 40px rgba(0, 255, 157, 0.1);
+    overflow: hidden;
+    transform: perspective(1000px) rotateX(5deg);
+    transition: transform 0.3s ease;
+}
+
+.console-container:hover {
+    transform: perspective(1000px) rotateX(0deg);
+}
+
+.console-header {
+    background: #00ff9d;
+    padding: 0.8rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.console-title {
+    color: #000;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.console-content {
+    padding: 1.5rem;
+    min-height: 400px;
+    font-family: monospace;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+#console-output {
+    flex: 1;
+    color: #00ff9d;
+    margin-bottom: 1rem;
+    overflow-y: auto;
+    min-height: 350px;
+    text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+    padding-right: 10px;
+}
+
+#console-output::-webkit-scrollbar {
+    width: 5px;
+}
+
+#console-output::-webkit-scrollbar-track {
+    background: rgba(0, 255, 157, 0.1);
+    border-radius: 10px;
+}
+
+#console-output::-webkit-scrollbar-thumb {
+    background: #00ff9d;
+    border-radius: 10px;
+}
+
+.console-line {
+    margin: 0.3rem 0;
+    line-height: 1.4;
+    position: relative;
+    padding-left: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.console-line::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: #00ff9d;
+    opacity: 0.5;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+    background: rgba(0, 255, 157, 0.05);
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 255, 157, 0.1);
+}
+
+.prompt {
+    color: #00ff9d;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+}
+
+#console-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #00ff9d;
+    font-family: monospace;
+    font-size: 1.1rem;
+    outline: none;
+    text-shadow: 0 0 5px rgba(0, 255, 157, 0.5);
+}
+
+#console-input::placeholder {
+    color: rgba(0, 255, 157, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Processing animation */
+.processing {
+    display: inline-block;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .hacker-console {
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .console-container {
+        transform: none;
+    }
+    
+    .console-content {
+        min-height: 300px;
+    }
+    
+    #console-output {
+        min-height: 250px;
+    }
+}
+ 
